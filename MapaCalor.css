@@ -1,0 +1,36 @@
+html, body, #divMap{            
+    height: 100%;           
+    margin: 0;
+    padding: 0;
+}
+#divMap{
+    height: 75%;
+    width: 100%;
+    border: solid;
+}
+/* #BasemapToggle {
+    position: absolute;
+    top: 85px;
+    right: 20px;
+    z-index: 50;
+} */
+#BasemapGallery {
+    position: absolute;
+    top: 85px;
+    right: 100px;
+    z-index: 50;
+}
+/* #Scalebar{
+    z-index: 50;
+}
+#Legend{
+    position: absolute;
+    bottom: 275px;
+    left: 20px;
+    z-index: 50;
+    border: solid;
+    background-color: white;
+    width: 150px;
+    height: 250px;
+    opacity: 0.95;
+} */
