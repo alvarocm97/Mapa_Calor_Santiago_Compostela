@@ -43,9 +43,7 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     var mostrar6 = document.getElementById('diciembre');
     mostrar6.addEventListener('click', mapaCalor6);    
 
-    function mapaCalor(){
-
-        
+    function mapaCalor(){        
         
          console.log("Ejecuta")
     
