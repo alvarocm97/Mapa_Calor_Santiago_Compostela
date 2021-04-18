@@ -43,61 +43,80 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     var mostrar6 = document.getElementById('diciembre');
     mostrar6.addEventListener('click', mapaCalor6);    
 
-    function mapaCalor(){        
+    function mapaCalor(){      
         
          console.log("Ejecuta")
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
+
+    console.log(serviceURL)
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
+        
         colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+            { ratio: 0.08, color: "rgb(133, 193, 200)" },
+            { ratio: 0.15, color: "rgb(144, 161, 190)"},
+            { ratio: 0.23, color: "rgba(156, 129, 132)" },
+            { ratio: 0.31, color: "rgb(167, 97, 170)" },
+            { ratio: 0.38, color: "rgb(175, 73, 128)"},
+            { ratio: 0.46, color: "rgba(184, 48, 85)" },
+            { ratio: 0.54, color: "rgb(192, 24, 42)" },
+            { ratio: 0.62, color: "rgb(200, 0, 0)"},
+            { ratio: 0.69, color: "rgba(211, 51, 0)" },
+            { ratio: 0.77, color: "rgb(222, 102, 0)" },
+            { ratio: 0.85, color: "rgb(233, 153, 0)"},
+            { ratio: 0.92, color: "rgb(244, 204, 0)"},
+            { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
-            "flujo_2019_06"
+        minPixelIntensity: 10,          
+        outFields:"flujo_2019_06"
             // "flujo_2019_07",
             // "flujo_2019_08",
             // "flujo_2019_09",
             // "flujo_2019_10",
             // "flujo_2019_11",
             // "flujo_2019_12"
-          ]
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        console.log(heatmapFeatureLayerOptions)
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
-            "no_2019_06"
+        
+        colorStops: [
+            { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+            { ratio: 0.08, color: "rgb(133, 193, 200)" },
+            { ratio: 0.15, color: "rgb(144, 161, 190)"},
+            { ratio: 0.23, color: "rgba(156, 129, 132)" },
+            { ratio: 0.31, color: "rgb(167, 97, 170)" },
+            { ratio: 0.38, color: "rgb(175, 73, 128)"},
+            { ratio: 0.46, color: "rgba(184, 48, 85)" },
+            { ratio: 0.54, color: "rgb(192, 24, 42)" },
+            { ratio: 0.62, color: "rgb(200, 0, 0)"},
+            { ratio: 0.69, color: "rgba(211, 51, 0)" },
+            { ratio: 0.77, color: "rgb(222, 102, 0)" },
+            { ratio: 0.85, color: "rgb(233, 153, 0)"},
+            { ratio: 0.92, color: "rgb(244, 204, 0)"},
+            { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        outFields: "no_2019_06"
             // "no_2019_07",
             // "no_2019_08",
             // "no_2019_09",
             // "no_2019_10",
             // "no_2019_11",
             // "no_2019_12"
-          ]
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
@@ -109,17 +128,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+        minPixelIntensity: 10,          
+        field: [
             // "flujo_2019_06"
             "flujo_2019_07"
             // "flujo_2019_08",
@@ -129,24 +156,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "flujo_2019_12"
           ]
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        field: [
             // "no_2019_06"
             "no_2019_07"
             // "no_2019_08",
@@ -156,8 +191,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "no_2019_12"
           ]
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
@@ -169,17 +204,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+        minPixelIntensity: 10,          
+        field: [
             // "flujo_2019_06"
             // "flujo_2019_07",
             "flujo_2019_08"
@@ -189,24 +232,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "flujo_2019_12"
           ]
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        field: [
             // "no_2019_06"
             // "no_2019_07",
             "no_2019_08"
@@ -216,8 +267,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "no_2019_12"
           ]
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
@@ -229,17 +280,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+        minPixelIntensity: 10,          
+        field: [
             // "flujo_2019_06"
             // "flujo_2019_07",
             // "flujo_2019_08",
@@ -249,24 +308,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "flujo_2019_12"
           ]
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        field: [
             // "no_2019_06"
             // "no_2019_07",
             // "no_2019_08",
@@ -276,8 +343,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "no_2019_12"
           ]
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
@@ -289,17 +356,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+        minPixelIntensity: 10,          
+        field: [
             // "flujo_2019_06"
             // "flujo_2019_07",
             // "flujo_2019_08",
@@ -309,24 +384,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "flujo_2019_12"
           ]
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        field: [
             // "no_2019_06"
             // "no_2019_07",
             // "no_2019_08",
@@ -336,8 +419,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "no_2019_12"
           ]
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
@@ -349,17 +432,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+        minPixelIntensity: 10,          
+        field: [
             // "flujo_2019_06"
             // "flujo_2019_07",
             // "flujo_2019_08",
@@ -369,24 +460,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "flujo_2019_12"
           ]
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        field: [
             // "no_2019_06"
             // "no_2019_07",
             // "no_2019_08",
@@ -396,8 +495,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             // "no_2019_12"
           ]
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
@@ -409,17 +508,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     
     var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        // colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        colorStops: [
-            { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-            { ratio: 0.6, color: "rgb(250, 0, 0)" },
-            { ratio: 0.85, color: "rgb(250, 150, 0)"},
-            { ratio: 0.95, color: "rgb(255, 255, 0)"}],
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+        minPixelIntensity: 10,          
+        field: [
             // "flujo_2019_06"
             // "flujo_2019_07",
             // "flujo_2019_08",
@@ -429,24 +536,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             "flujo_2019_12"
           ]
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         myMap.addLayer(heatmapFeatureLayer);
 
     var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
         var heatmapFeatureLayerOptions1 = {
-        //   mode: FeatureLayer.MODE_SNAPSHOT,
-        colors: ["rgba(0, 0, 255, 0)","rgb(0, 0, 255)","rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-        // colorStops: [
-        //             { ratio: 0, color: "rgba(250, 0, 0, 0)" },
-        //             { ratio: 0.6, color: "rgb(250, 0, 0)" },
-        //             { ratio: 0.85, color: "rgb(250, 150, 0)"},
-        //             { ratio: 0.95, color: "rgb(255, 255, 0)"}],
-        blurRadius: 200,
-        maxPixelIntensity: 250,
-        minPixelIntensity: 100,          
-        outFields: [
+            colorStops: [
+                { ratio: 0, color: "rgba(133, 193, 200, 0)" },
+                { ratio: 0.08, color: "rgb(133, 193, 200)" },
+                { ratio: 0.15, color: "rgb(144, 161, 190)"},
+                { ratio: 0.23, color: "rgba(156, 129, 132)" },
+                { ratio: 0.31, color: "rgb(167, 97, 170)" },
+                { ratio: 0.38, color: "rgb(175, 73, 128)"},
+                { ratio: 0.46, color: "rgba(184, 48, 85)" },
+                { ratio: 0.54, color: "rgb(192, 24, 42)" },
+                { ratio: 0.62, color: "rgb(200, 0, 0)"},
+                { ratio: 0.69, color: "rgba(211, 51, 0)" },
+                { ratio: 0.77, color: "rgb(222, 102, 0)" },
+                { ratio: 0.85, color: "rgb(233, 153, 0)"},
+                { ratio: 0.92, color: "rgb(244, 204, 0)"},
+                { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 25,
+        maxPixelIntensity: 50,
+        minPixelIntensity: 10,          
+        field: [
             // "no_2019_06"
             // "no_2019_07",
             // "no_2019_08",
@@ -456,8 +571,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             "no_2019_12"
           ]
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1, heatmapFeatureLayerOptions1);
-        var heatmapRenderer1 = new HeatmapRenderer();
+        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
         heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
         myMap.addLayer(heatmapFeatureLayer1);
     };
