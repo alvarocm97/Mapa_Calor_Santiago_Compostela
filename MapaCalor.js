@@ -43,13 +43,13 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
     var mostrar6 = document.getElementById('diciembre');
     mostrar6.addEventListener('click', mapaCalor6);    
 
-    function mapaCalor(){      
+    function mapaCalor(){
         
-         console.log("Ejecuta")
+        featureLayer.redraw();
+        featureLayer1.redraw();
+        
+         console.log("Ejecuta")            
     
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
-
-    console.log(serviceURL)
         var heatmapFeatureLayerOptions = {
         
         colorStops: [
@@ -66,26 +66,20 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             { ratio: 0.77, color: "rgb(222, 102, 0)" },
             { ratio: 0.85, color: "rgb(233, 153, 0)"},
             { ratio: 0.92, color: "rgb(244, 204, 0)"},
-            { ratio: 1, color: "rgb(255, 255, 0)"}],
+            { ratio: 1, color: "rgb(0, 255, 0)"}],
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        outFields:"flujo_2019_06"
-            // "flujo_2019_07",
-            // "flujo_2019_08",
-            // "flujo_2019_09",
-            // "flujo_2019_10",
-            // "flujo_2019_11",
-            // "flujo_2019_12"
+        field: "flujo_2019_06",            
           
         };
         console.log(heatmapFeatureLayerOptions)
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
-
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+        console.log(heatmapRenderer)
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
+    
         var heatmapFeatureLayerOptions1 = {
         
         colorStops: [
@@ -106,27 +100,23 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        outFields: "no_2019_06"
-            // "no_2019_07",
-            // "no_2019_08",
-            // "no_2019_09",
-            // "no_2019_10",
-            // "no_2019_11",
-            // "no_2019_12"
-          
+        field: "co_2019_06",         
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        
     };
 
     function mapaCalor1(){
 
+        featureLayer.redraw();
+        featureLayer1.redraw();
    
          console.log("Ejecuta1")
     
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
+    
         var heatmapFeatureLayerOptions = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -146,22 +136,17 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        field: [
-            // "flujo_2019_06"
-            "flujo_2019_07"
-            // "flujo_2019_08",
-            // "flujo_2019_09",
-            // "flujo_2019_10",
-            // "flujo_2019_11",
-            // "flujo_2019_12"
-          ]
+        // field: "flujo_2019_07"
+            
+        
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
 
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+    
         var heatmapFeatureLayerOptions1 = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -181,28 +166,27 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        field: [
-            // "no_2019_06"
-            "no_2019_07"
-            // "no_2019_08",
-            // "no_2019_09",
-            // "no_2019_10",
-            // "no_2019_11",
-            // "no_2019_12"
-          ]
+        // field:"co_2019_07"
+            
+        
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        
     };
 
-    function mapaCalor2(){
+    function mapaCalor2(){    
+        
+        featureLayer.redraw();
+        featureLayer1.redraw();
 
     
          console.log("Ejecuta2")
     
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
+    
         var heatmapFeatureLayerOptions = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -222,22 +206,16 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        field: [
-            // "flujo_2019_06"
-            // "flujo_2019_07",
-            "flujo_2019_08"
-            // "flujo_2019_09",
-            // "flujo_2019_10",
-            // "flujo_2019_11",
-            // "flujo_2019_12"
-          ]
+        // field: "flujo_2019_08"
+            
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
 
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+    
         var heatmapFeatureLayerOptions1 = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -257,28 +235,24 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        field: [
-            // "no_2019_06"
-            // "no_2019_07",
-            "no_2019_08"
-            // "no_2019_09",
-            // "no_2019_10",
-            // "no_2019_11",
-            // "no_2019_12"
-          ]
+        // field: "co_2019_08"
+            
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        
     };
 
     function mapaCalor3(){
 
+        featureLayer.redraw();
+        featureLayer1.redraw();
     
          console.log("Ejecuta3")
     
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
         var heatmapFeatureLayerOptions = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -298,22 +272,16 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        field: [
-            // "flujo_2019_06"
-            // "flujo_2019_07",
-            // "flujo_2019_08",
-            "flujo_2019_09"
-            // "flujo_2019_10",
-            // "flujo_2019_11",
-            // "flujo_2019_12"
-          ]
+        // field: "flujo_2019_09"
+            
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
 
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+    
         var heatmapFeatureLayerOptions1 = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -333,28 +301,24 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        field: [
-            // "no_2019_06"
-            // "no_2019_07",
-            // "no_2019_08",
-            "no_2019_09"
-            // "no_2019_10",
-            // "no_2019_11",
-            // "no_2019_12"
-          ]
+        // field: "co_2019_09"
+            
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        
     };
 
     function mapaCalor4(){
 
+        featureLayer.redraw();
+        featureLayer1.redraw();
     
          console.log("Ejecuta4")
-    
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
+        
         var heatmapFeatureLayerOptions = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -374,22 +338,16 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        field: [
-            // "flujo_2019_06"
-            // "flujo_2019_07",
-            // "flujo_2019_08",
-            // "flujo_2019_09",
-            "flujo_2019_10"
-            // "flujo_2019_11",
-            // "flujo_2019_12"
-          ]
+        // field: "flujo_2019_10"
+            
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
 
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+    
         var heatmapFeatureLayerOptions1 = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -409,28 +367,26 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        field: [
-            // "no_2019_06"
-            // "no_2019_07",
-            // "no_2019_08",
-            // "no_2019_09",
-            "no_2019_10"
-            // "no_2019_11",
-            // "no_2019_12"
-          ]
+        // field: "co_2019_10"
+            
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer.redraw();
+        featureLayer1.redraw();
     };
 
     function mapaCalor5(){
 
+        featureLayer.redraw();
+        featureLayer1.redraw();
     
          console.log("Ejecuta5")
     
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
+    
         var heatmapFeatureLayerOptions = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -450,22 +406,16 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        field: [
-            // "flujo_2019_06"
-            // "flujo_2019_07",
-            // "flujo_2019_08",
-            // "flujo_2019_09",
-            // "flujo_2019_10",
-            "flujo_2019_11"
-            // "flujo_2019_12"
-          ]
+        // field: "flujo_2019_11"
+            
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
 
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+   
         var heatmapFeatureLayerOptions1 = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -485,28 +435,25 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        field: [
-            // "no_2019_06"
-            // "no_2019_07",
-            // "no_2019_08",
-            // "no_2019_09",
-            // "no_2019_10",
-            "no_2019_11"
-            // "no_2019_12"
-          ]
+        // field: "co_2019_11"
+            
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        
     };
 
     function mapaCalor6(){
 
+        featureLayer.redraw();
+        featureLayer1.redraw();
     
          console.log("Ejecuta6")
     
-    var serviceURL = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1";
+    
         var heatmapFeatureLayerOptions = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -526,22 +473,15 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        field: [
-            // "flujo_2019_06"
-            // "flujo_2019_07",
-            // "flujo_2019_08",
-            // "flujo_2019_09",
-            // "flujo_2019_10",
-            // "flujo_2019_11",
-            "flujo_2019_12"
-          ]
+        // field: "flujo_2019_12"
+          
         };
-        var heatmapFeatureLayer = new FeatureLayer(serviceURL);
+        // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
         var heatmapRenderer = new HeatmapRenderer(heatmapFeatureLayerOptions);
-        heatmapFeatureLayer.setRenderer(heatmapRenderer);
-        myMap.addLayer(heatmapFeatureLayer);
+        featureLayer.setRenderer(heatmapRenderer);
+        // myMap.addLayer(heatmapFeatureLayer);
 
-    var serviceURL1 = "https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5";
+    
         var heatmapFeatureLayerOptions1 = {
             colorStops: [
                 { ratio: 0, color: "rgba(133, 193, 200, 0)" },
@@ -561,20 +501,14 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         blurRadius: 25,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        field: [
-            // "no_2019_06"
-            // "no_2019_07",
-            // "no_2019_08",
-            // "no_2019_09",
-            // "no_2019_10",
-            // "no_2019_11",
-            "no_2019_12"
-          ]
+        // field: "co_2019_12"
+          
         };
-        var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
+        // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
         var heatmapRenderer1 = new HeatmapRenderer(heatmapFeatureLayerOptions1);
-        heatmapFeatureLayer1.setRenderer(heatmapRenderer1);
-        myMap.addLayer(heatmapFeatureLayer1);
+        featureLayer1.setRenderer(heatmapRenderer1);
+        // myMap.addLayer(heatmapFeatureLayer1);
+        
     };
 
         
