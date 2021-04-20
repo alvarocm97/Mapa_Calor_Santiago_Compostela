@@ -4,9 +4,15 @@ html, body, #divMap{
     padding: 0;
 }
 #divMap{
-    height: 75%;
+    height: 90%;
     width: 100%;
     border: solid;
+}
+#divInput{
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
 /* #BasemapToggle {
     position: absolute;

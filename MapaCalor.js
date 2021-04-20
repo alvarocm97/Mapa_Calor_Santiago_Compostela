@@ -1,11 +1,9 @@
-require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "esri/renderers/HeatmapRenderer", "esri/dijit/TimeSlider", "esri/tasks/Date",
-
+require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "esri/renderers/HeatmapRenderer", 
 "dojo/ready",
-// "dojo/parser",
 "dojo/on",
 
 
-"dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"], function(Map, FeatureLayer, BasemapGallery, HeatmapRenderer, TimeSlider, Date, ready, on) {
+"dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"], function(Map, FeatureLayer, BasemapGallery, HeatmapRenderer, ready, on) {
     
 
     var myMap = new Map("divMap", {
@@ -13,11 +11,32 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
         center : [-8.5463, 42.8804],
         zoom: 14
            
-    });      
+    });  
+    
+    var FeatureLayerOptions = {
+        mode: FeatureLayer.MODE_SNAPSHOT,
+        outFields: ["flujo_2019_06",
+            "flujo_2019_07",
+            "flujo_2019_08",
+            "flujo_2019_09",
+            "flujo_2019_10",
+            "flujo_2019_11",
+            "flujo_2019_12"]        
+      };
+    var FeatureLayerOptions1 = {
+        mode: FeatureLayer.MODE_SNAPSHOT,
+        outFields: ["co_2019_06",
+            "co_2019_07",
+            "co_2019_08", 
+            "co_2019_09", 
+            "co_2019_10", 
+            "co_2019_11", 
+            "co_2019_12"]        
+      };
       
-    var featureLayer = new FeatureLayer ("https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1");
+    var featureLayer = new FeatureLayer ("https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/1", FeatureLayerOptions);
 
-    var featureLayer1 = new FeatureLayer ("https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5");
+    var featureLayer1 = new FeatureLayer ("https://desktop-smcdlo2/server/rest/services/PFM/Servicios_Ayuntamiento/MapServer/5", FeatureLayerOptions1);
       
     myMap.addLayer(featureLayer);    
     myMap.addLayer(featureLayer1);
@@ -66,8 +85,8 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             { ratio: 0.77, color: "rgb(222, 102, 0)" },
             { ratio: 0.85, color: "rgb(233, 153, 0)"},
             { ratio: 0.92, color: "rgb(244, 204, 0)"},
-            { ratio: 1, color: "rgb(0, 255, 0)"}],
-        blurRadius: 25,
+            { ratio: 1, color: "rgb(255, 255, 0)"}],
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
         field: "flujo_2019_06",            
@@ -96,9 +115,9 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
             { ratio: 0.77, color: "rgb(222, 102, 0)" },
             { ratio: 0.85, color: "rgb(233, 153, 0)"},
             { ratio: 0.92, color: "rgb(244, 204, 0)"},
-            { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
-        maxPixelIntensity: 50,
+            { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
+        maxPixelIntensity: 250,
         minPixelIntensity: 10,          
         field: "co_2019_06",         
         };
@@ -133,10 +152,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
                 { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        // field: "flujo_2019_07"
+        field: "flujo_2019_07"
             
         
           
@@ -162,11 +181,11 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.77, color: "rgb(222, 102, 0)" },
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
-                { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+                { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        // field:"co_2019_07"
+        field:"co_2019_07"
             
         
           
@@ -203,10 +222,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
                 { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        // field: "flujo_2019_08"
+        field: "flujo_2019_08"
             
           
         };
@@ -231,11 +250,11 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.77, color: "rgb(222, 102, 0)" },
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
-                { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+                { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        // field: "co_2019_08"
+        field: "co_2019_08"
             
           
         };
@@ -269,10 +288,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
                 { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        // field: "flujo_2019_09"
+        field: "flujo_2019_09"
             
           
         };
@@ -297,11 +316,11 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.77, color: "rgb(222, 102, 0)" },
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
-                { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+                { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        // field: "co_2019_09"
+        field: "co_2019_09"
             
           
         };
@@ -335,10 +354,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
                 { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        // field: "flujo_2019_10"
+        field: "flujo_2019_10"
             
           
         };
@@ -363,11 +382,11 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.77, color: "rgb(222, 102, 0)" },
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
-                { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+                { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        // field: "co_2019_10"
+        field: "co_2019_10"
             
           
         };
@@ -403,10 +422,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
                 { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        // field: "flujo_2019_11"
+        field: "flujo_2019_11"
             
           
         };
@@ -431,11 +450,11 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.77, color: "rgb(222, 102, 0)" },
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
-                { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+                { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        // field: "co_2019_11"
+        field: "co_2019_11"
             
           
         };
@@ -470,10 +489,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
                 { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+        blurRadius: 15,
         maxPixelIntensity: 250,
         minPixelIntensity: 10,          
-        // field: "flujo_2019_12"
+        field: "flujo_2019_12"
           
         };
         // var heatmapFeatureLayer = new FeatureLayer(serviceURL);
@@ -497,11 +516,11 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
                 { ratio: 0.77, color: "rgb(222, 102, 0)" },
                 { ratio: 0.85, color: "rgb(233, 153, 0)"},
                 { ratio: 0.92, color: "rgb(244, 204, 0)"},
-                { ratio: 1, color: "rgb(255, 255, 0)"}],
-        blurRadius: 25,
+                { ratio: 1, color: "rgb(0, 255, 188)"}],
+        blurRadius: 20,
         maxPixelIntensity: 50,
         minPixelIntensity: 10,          
-        // field: "co_2019_12"
+        field: "co_2019_12"
           
         };
         // var heatmapFeatureLayer1 = new FeatureLayer(serviceURL1);
@@ -513,10 +532,10 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
 
         
 
-    // var basemapGallery = new BasemapGallery({
-    //       map: myMap,
-    //       basemapsGroup: { owner: "esri", title: "Community Basemaps" }
-    //   }, "BasemapGallery")
-    //   basemapGallery.add(basemapGallery);
+    var basemapGallery = new BasemapGallery({
+          map: myMap,
+          basemapsGroup: { owner: "esri", title: "Community Basemaps" }
+      }, "BasemapGallery")
+      basemapGallery.add(basemapGallery);
     
 })
