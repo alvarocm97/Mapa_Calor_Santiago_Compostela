@@ -1,9 +1,10 @@
 require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "esri/renderers/HeatmapRenderer", 
+"esri/dijit/Scalebar", 
 "dojo/ready",
 "dojo/on",
 
 
-"dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"], function(Map, FeatureLayer, BasemapGallery, HeatmapRenderer, ready, on) {
+"dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"], function(Map, FeatureLayer, BasemapGallery, HeatmapRenderer, Scalebar, ready, on) {
     
 
     var myMap = new Map("divMap", {
@@ -40,6 +41,15 @@ require(["esri/map", "esri/layers/FeatureLayer", "esri/dijit/BasemapGallery", "e
       
     myMap.addLayer(featureLayer);    
     myMap.addLayer(featureLayer1);
+
+    var scalebar = new Scalebar ({
+        map: myMap,
+        attachTo: "bottom-left",
+        scalebarStyle: "line",
+        scalebarUnit: "metric"         
+    });    
+
+    
 
     var mostrar = document.getElementById('junio');
     mostrar.addEventListener('click', mapaCalor);

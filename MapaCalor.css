@@ -4,7 +4,7 @@ html, body, #divMap{
     padding: 0;
 }
 #divMap{
-    height: 90%;
+    height: 95%;
     width: 100%;
     border: solid;
 }
@@ -14,29 +14,6 @@ html, body, #divMap{
     justify-content: space-between;
     align-items: center;
 }
-/* #BasemapToggle {
-    position: absolute;
-    top: 85px;
-    right: 20px;
-    z-index: 50;
-} */
-#BasemapGallery {
-    position: absolute;
-    top: 85px;
-    right: 100px;
-    z-index: 50;
+.scalebar_bottom-left.esriScalebar{
+    margin-bottom: 75px;
 }
-/* #Scalebar{
-    z-index: 50;
-}
-#Legend{
-    position: absolute;
-    bottom: 275px;
-    left: 20px;
-    z-index: 50;
-    border: solid;
-    background-color: white;
-    width: 150px;
-    height: 250px;
-    opacity: 0.95;
-} */
